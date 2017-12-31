@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html class="html-class">
+	<head>
+		<title>
+			Test repository
+		</title>
+		<base target="_blank">
+		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
+		<script>
+			var S = Standards.general;
+			function test() {
+				S.getId("result").textContent = "You pressed the button.";
+			}
+		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
+	</head>
+	<body>
+		<h1 class="main-title">
+			Test repository
+		</h1>
+		<main>
+			<p id="result">
+				Result
+			</p>
+			<button onclick="test()">
+				Test
+			</button>
+		</main>
+	</body>
+</html>
