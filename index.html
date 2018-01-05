@@ -6,10 +6,107 @@
 		</title>
 		<base target="_blank">
 		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
+		<!-- just github-api source (5.3kb) -->
+		<!--<script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script>-->
+		<!-- standalone (20.3kb) -->
+		<script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
 		<script>
 			var S = Standards.general;
+			/*
+			Standards.GitHub = {};
+			Standards.GitHub.commit = function (file) {
+				/**
+				commits stuff to GitHub
+				arguments:
+					file = an object ({}) with file information designated by certain properties
+						properties:
+							content = the full contents of the file to be committed
+							location = the location of the file to be committed
+							summary = a summary description of the commit
+				runs with Node.js
+				non-native functions: none
+				**
+				return Standards.GitHub.repository.getRef("heads/" + Standards.GitHub.branchName).then(
+					(ref) => {
+						return Standards.GitHub.repository.getCommit(ref.data.object.sha).then(
+							(commit) => {
+								return Standards.GitHub.repository.createBlob(file.content).then(
+									(blob) => {
+										return Standards.GitHub.repository.createTree([{
+											sha: blob.data.sha,
+											path: file.location,
+											mode: "100644",
+											type: "blob"
+										}], commit.data.tree.sha).then(
+											(tree) => {
+												return Standards.GitHub.repository.commit(ref.data.object.sha, tree.data.sha, file.summary).then(
+													(newSHA) => {
+														Standards.GitHub.repository.updateHead("heads/" + Standards.GitHub.branchName, newSHA.data.sha).catch(
+															(error) => {
+																console.error("The repository head couldn't be updated.");
+																console.error(error);
+															}
+														);
+													}
+												).catch(
+													(error) => {
+														console.error("There was a problem commiting.");
+														console.error(error);
+													}
+												);
+											}
+										).catch(
+											(error) => {
+												console.error("A repository tree couldn't be created.");
+												console.error(error);
+											}
+										);
+									}
+								).catch(
+									(error) => {
+										console.error("There was a problem creating a blob.");
+										console.error(error);
+									}
+								);
+							}
+						).catch(
+							(error) => {
+								console.error("The repository's commit couldn't be retrieved.");
+								console.error(error);
+							}
+						);
+					}
+				).catch(
+					(error) => {
+						console.error("There was a problem getting the repository reference.");
+						console.error(error);
+					}
+				);
+			};
+			*/
 			function test() {
+				/*
 				S.getId("result").textContent = "You pressed the button.";
+				Standards.GitHub.repository = new GitHub().getRepo("EpicenterPrograms", "testrepository");
+				Standards.GitHub.branchName = "master";
+				S.GitHub.commit({
+					content: String(document),
+					loction: "index.html",
+					summary: "This is a programmatic commit."
+				});
+				*/
+				var file = new XMLHttpRequest();
+				file.open("POST", "https://us-central1-epicenterresources.cloudfunctions.net/helloWorld");
+				file.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  // This is the encoding type.  //// text/html
+				file.onreadystatechange = function () {
+					if (file.readyState === 4) {
+						if (file.status === 200 || file.status == 0) {
+							S.getId("result").textContent = file.responseText;
+						}
+					}
+				}
+				// file.onload might also be able to be used without the states and statuses
+				file.send("This is a test.");
 			}
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
