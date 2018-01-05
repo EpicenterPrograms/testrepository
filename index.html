@@ -106,7 +106,7 @@
 					}
 				}
 				// file.onload might also be able to be used without the states and statuses
-				file.send({ information: "This is some information.", awesomeness: "me" });
+				file.send(S.http_build_query({ information: "This is some information.", awesomeness: "me" }));
 			}
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
