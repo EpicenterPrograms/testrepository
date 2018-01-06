@@ -106,7 +106,7 @@
 					}
 				}
 				// file.onload might also be able to be used without the states and statuses
-				file.send(S.http_build_query({ information: "This is some information.", awesomeness: "me" }));
+				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!DOCTYPE html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
 			}
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
