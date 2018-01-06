@@ -97,7 +97,7 @@
 				*/
 				var file = new XMLHttpRequest();
 				file.open("POST", "https://us-central1-epicenterresources.cloudfunctions.net/helloWorld");
-				file.setRequestHeader("Content-type", "application/json");  //// x-www-form-urlencoded");  // This is the encoding type.  //// text/html
+				file.setRequestHeader("Content-type", "x-www-form-urlencoded");  // This is the encoding type.  //// text/html or application/json
 				file.onreadystatechange = function () {
 					if (file.readyState === 4) {
 						if (file.status === 200 || file.status == 0) {
@@ -106,7 +106,7 @@
 					}
 				}
 				// file.onload might also be able to be used without the states and statuses
-				file.send(/*S.http_build_query(*/{ information: "This is some information.", awesomeness: "me" }/*)*/);
+				file.send(S.http_build_query({ information: "This is some information.", awesomeness: "me" }));
 			}
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
