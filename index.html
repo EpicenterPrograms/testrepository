@@ -115,7 +115,7 @@
 				*/
 				S.storage.server.store("nested data", "awesomeness", "folder1/folder2/folder3", function () {
 					console.log("Stored the data.");
-					S.storage.server.list(undefined, function (list) {
+					S.storage.server.list("folder1/folder2/folder3", function (list) {
 						console.log("Retrieved the data.");
 						S.getId("result").textContent = JSON.stringify(list);
 					});
