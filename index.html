@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html class="html-class">
+<!doctype html>
+<html>
 	<head>
 		<title>
 			Test repository
 		</title>
 		<base target="_blank">
+		<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-firestore.js"></script>
+		<script src="https://epicenterprograms.github.io/standards/behavior/firebaseinit.js"></script>
 		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
+		<!-- <script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script> -->
+		<script src="file:///C:/Users/Robert/Documents/GitHub/standards/behavior/general.js"></script>
 		<!-- just github-api source (5.3kb) -->
-		<!--<script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script>-->
-		<!-- standalone (20.3kb) -->
-		<script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
+		<!--<script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script> -->
+		<!-- standalone (20.3kb) (might be best) -->
+		<!-- <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script> -->
 		<script>
 			var S = Standards.general;
+			S.storage.server.defaultLocation = "~test";
 			/*
 			Standards.GitHub = {};
 			Standards.GitHub.commit = function (file) {
@@ -94,7 +100,7 @@
 					loction: "index.html",
 					summary: "This is a programmatic commit."
 				});
-				*/
+				*//*
 				var file = new XMLHttpRequest();
 				file.open("POST", "https://us-central1-epicenterresources.cloudfunctions.net/helloWorld");
 				file.setRequestHeader("Content-type", "x-www-form-urlencoded");  // This is the encoding type.  //// text/html or application/json
@@ -107,6 +113,12 @@
 				}
 				// file.onload might also be able to be used without the states and statuses
 				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!DOCTYPE html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
+				*/
+				S.storage.server.store("data", "value", undefined, function () {
+					S.storage.server.recall("data", undefined, function (information) {
+						S.getId("result").textContent = information;
+					});
+				});
 			}
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
@@ -115,6 +127,20 @@
 		<h1 class="main-title">
 			Test repository
 		</h1>
+		<div class="user-section">
+			<button id="signIn">
+				Log in
+			</button>
+			<button id="signUp">
+				Register
+			</button>
+			<button id="userSettings">
+				Settings
+			</button>
+			<button id="signOut">
+				Log out
+			</button>
+		</div>
 		<main>
 			<p id="result">
 				Result
