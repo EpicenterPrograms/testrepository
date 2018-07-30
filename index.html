@@ -9,8 +9,7 @@
 		<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-firestore.js"></script>
 		<script src="https://epicenterprograms.github.io/standards/behavior/firebaseinit.js"></script>
 		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
-		<!-- <script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script> -->
-		<script src="file:///C:/Users/Robert/Documents/GitHub/standards/behavior/general.js"></script>
+		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
 		<!-- just github-api source (5.3kb) -->
 		<!--<script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script> -->
 		<!-- standalone (20.3kb) (might be best) -->
@@ -112,7 +111,7 @@
 					}
 				}
 				// file.onload might also be able to be used without the states and statuses
-				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!DOCTYPE html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
+				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!doctype html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
 				*/
 				S.storage.server.store("data", "value", undefined, function () {
 					S.storage.server.recall("data", undefined, function (information) {
