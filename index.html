@@ -112,11 +112,13 @@
 				// file.onload might also be able to be used without the states and statuses
 				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!doctype html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
 				*/
-				S.storage.server.store("other data", "awesomeness", "folder1/folder2/folder3", function () {
-					console.log("Stored the data.");
-					S.storage.server.list(undefined, function (list) {
-						console.log("Retrieved the data.");
-						S.getId("result").textContent = JSON.stringify(list);
+				S.getId("result").textContent = "";
+				S.storage.server.list(undefined, function (list) {
+					console.log("Retrieved the data.");
+					S.forEach(list, function (key) {
+						S.storage.server.recall(key, undefined, function (data) {
+							S.getId("result").textContent += data + ", ";
+						});
 					});
 				});
 			}
