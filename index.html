@@ -113,12 +113,11 @@
 				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!doctype html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
 				*/
 				S.getId("result").textContent = "";
-				S.storage.server.list(undefined, function (list) {
-					console.log("Retrieved the data.");
-					S.forEach(list, function (key) {
-						S.storage.server.recall(key, undefined, function (data) {
-							S.getId("result").textContent += data + ", ";
-						});
+				S.storage.server.forget(null, undefined, function () {
+					console.log("Deleted the data.");
+					S.storage.server.list(undefined, function (list) {
+						console.log("Listed the data.");
+						S.getId("result").textContent = JSON.stringify(list);
 					});
 				});
 			}
