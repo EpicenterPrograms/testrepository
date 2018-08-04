@@ -112,14 +112,11 @@
 				// file.onload might also be able to be used without the states and statuses
 				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!doctype html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
 				*/
-				S.getId("result").textContent = "";
-				S.storage.server.forget(null, undefined, function () {
-					console.log("Deleted the data.");
-					S.storage.server.list(undefined, function (list) {
-						console.log("Listed the data.");
-						S.getId("result").textContent = JSON.stringify(list);
-					});
+				let worker = new Worker("webworker.js");
+				worker.addEventListener("message", function (message) {
+					S.getId("result").textContent = message.data;
 				});
+				worker.postMessage("Stuff");
 			}
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
