@@ -8,8 +8,7 @@
 		<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-firestore.js"></script>
 		<script src="https://epicenterprograms.github.io/standards/behavior/firebaseinit.js"></script>
-		<!--<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>-->
-		<script src="file:///C:/Users/Robert/Documents/GitHub/standards/behavior/general.js"></script>
+		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
 		<!-- just github-api source (5.3kb) -->
 		<!--<script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script> -->
 		<!-- standalone (20.3kb) (might be best) -->
@@ -145,6 +144,14 @@
 			S.listen("move", "click", function () {
 				M.move(S.getId("location1").trim(), S.getId("location2").trim()).then(function () {
 					S.getId("result").textContent = "Moved";
+				});
+			});
+
+			S.onLoad(function () {
+				S.getFile("file:///C:/Users/Robert/Documents/GitHub/standards/behavior/general.js", function (behavior) {
+					let script = document.createElement("script");
+					script.innerHTML = behavior;
+					document.head.appendChild(script);
 				});
 			});
 		</script>
