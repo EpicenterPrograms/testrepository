@@ -147,10 +147,19 @@
 				});
 			});
 
+			S.listen("location1", "dblclick", function () {
+				this.value = "";
+				S.getId("location2").value = "";
+			});
+			S.listen("location2", "dblclick", function () {
+				this.value = "";
+				S.getId("location1").value = "";
+			});
+
 			S.onLoad(function () {
 				S.getFile("file:///C:/Users/Robert/Documents/GitHub/standards/behavior/general.js", function (behavior) {
 					let script = document.createElement("script");
-					script.innerHTML = behavior;
+					script.appendChild(document.createTextNode(behavior));
 					document.head.appendChild(script);
 				});
 			});
