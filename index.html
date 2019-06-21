@@ -8,7 +8,7 @@
 		<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-firestore.js"></script>
 		<script src="https://epicenterprograms.github.io/standards/behavior/firebaseinit.js"></script>
-		<script src="https://epicenterprograms.github.io/standards/behavior/general.js"></script>
+		<script src="https://epicenterprograms.github.io/standards/tests/behavior.js"></script>
 		<!-- just github-api source (5.3kb) -->
 		<!--<script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script> -->
 		<!-- standalone (20.3kb) (might be best) -->
@@ -157,11 +157,7 @@
 			});
 
 			S.onLoad(function () {
-				S.getFile("file:///C:/Users/Robert/Documents/GitHub/standards/behavior/general.js", function (behavior) {
-					let script = document.createElement("script");
-					script.appendChild(document.createTextNode(behavior));
-					document.head.appendChild(script);
-				});
+				
 			});
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
