@@ -122,27 +122,27 @@
 				*/
 			}
 			S.listen("store", "click", function () {
-				M.store(S.getId("location1").trim(), S.getId("location2").trim()).then(function () {
+				M.store(S.getId("location1").value.trim(), S.getId("location2").value.trim()).then(function () {
 					S.getId("result").textContent = "Stored";
 				});
 			});
 			S.listen("recall", "click", function () {
-				M.recall(S.getId("location1").trim()).then(function (result) {
+				M.recall(S.getId("location1").value.trim()).then(function (result) {
 					S.getId("result").textContent = JSON.stringify(result);
 				});
 			});
 			S.listen("list", "click", function () {
-				M.list(S.getId("location1").trim()).then(function (result) {
+				M.list(S.getId("location1").value.trim()).then(function (result) {
 					S.getId("result").textContent = result.join(", ");
 				});
 			});
 			S.listen("forget", "click", function () {
-				M.forget(S.getId("location1").trim()).then(function () {
+				M.forget(S.getId("location1").value.trim()).then(function () {
 					S.getId("result").textContent = "Forgotten";
 				});
 			});
 			S.listen("move", "click", function () {
-				M.move(S.getId("location1").trim(), S.getId("location2").trim()).then(function () {
+				M.move(S.getId("location1").value.trim(), S.getId("location2").value.trim()).then(function () {
 					S.getId("result").textContent = "Moved";
 				});
 			});
