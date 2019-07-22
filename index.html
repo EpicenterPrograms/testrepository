@@ -16,7 +16,7 @@
 		<script>
 			var S = Standards.general;
 			var M = S.storage.server;
-			S.storage.server.defaultLocation = "~test";
+			M.defaultLocation = "~test";
 			/*
 			Standards.GitHub = {};
 			Standards.GitHub.commit = function (file) {
@@ -113,14 +113,13 @@
 				// file.onload might also be able to be used without the states and statuses
 				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!doctype html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
 				*/
-				/*
-				let worker = new Worker("webworker.js");
-				worker.addEventListener("message", function (message) {
-					S.getId("result").textContent = message.data;
-				});
-				worker.postMessage("Stuff");
-				*/
 			}
+
+			S.listen("default", "change", function () {
+				if (this.value != "") {
+					M.defaultLocation = this.value.trim();
+				}
+			});
 			S.listen("store", "click", function () {
 				M.store(S.getId("location1").value.trim(), S.getId("location2").value.trim()).then(function () {
 					S.getId("result").textContent = "Stored";
@@ -146,7 +145,10 @@
 					S.getId("result").textContent = "Moved";
 				});
 			});
-
+			
+			S.listen("default", "dblclick", function () {
+				this.value = "";
+			});
 			S.listen("location1", "dblclick", function () {
 				this.value = "";
 				S.getId("location2").value = "";
@@ -187,6 +189,8 @@
 			<button onclick="test()">
 				Test
 			</button>
+			<br>
+			<input type="text" id="default" placeholder="default location" value="~test">
 			<br>
 			<input type="text" id="location1">
 			<input type="text" id="location2">
