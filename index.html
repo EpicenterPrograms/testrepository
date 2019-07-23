@@ -121,26 +121,31 @@
 				}
 			});
 			S.listen("store", "click", function () {
+				S.getId("result").textContent = "Working...";
 				M.store(S.getId("location1").value.trim(), S.getId("location2").value.trim()).then(function () {
 					S.getId("result").textContent = "Stored";
 				});
 			});
 			S.listen("recall", "click", function () {
+				S.getId("result").textContent = "Working...";
 				M.recall(S.getId("location1").value.trim()).then(function (result) {
 					S.getId("result").textContent = JSON.stringify(result);
 				});
 			});
 			S.listen("list", "click", function () {
+				S.getId("result").textContent = "Working...";
 				M.list(S.getId("location1").value.trim()).then(function (result) {
 					S.getId("result").textContent = result.join(", ");
 				});
 			});
 			S.listen("forget", "click", function () {
+				S.getId("result").textContent = "Working...";
 				M.forget(S.getId("location1").value.trim()).then(function () {
 					S.getId("result").textContent = "Forgotten";
 				});
 			});
 			S.listen("move", "click", function () {
+				S.getId("result").textContent = "Working...";
 				M.move(S.getId("location1").value.trim(), S.getId("location2").value.trim()).then(function () {
 					S.getId("result").textContent = "Moved";
 				});
