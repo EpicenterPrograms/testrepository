@@ -125,7 +125,8 @@
 			S.listen("store", "click", function () {
 				S.getId("result").textContent = "Working...";
 				let information = S.getId("location2").value.trim();
-				if (information.search(/\{:\}/) > -1) {
+				if (information.search(/\{.+:.+\}/) > -1) {
+					information = information.replace(/[^{:,}]+/g, '"$&"');
 					information = JSON.parse(information);
 				}
 				M.store(S.getId("location1").value.trim(), information).then(function () {
