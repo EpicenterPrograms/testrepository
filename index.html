@@ -16,7 +16,6 @@
 		<script>
 			var S = Standards.general;
 			var M = S.storage.server;
-			M.defaultLocation = "~test";
 			/*
 			Standards.GitHub = {};
 			Standards.GitHub.commit = function (file) {
@@ -186,7 +185,9 @@
 			});
 
 			S.onLoad(function () {
-				
+				if (S.getId("default").value != "") {
+					M.defaultLocation = S.getId("default").value.trim();
+				}
 			});
 		</script>
 		<link rel="stylesheet" href="https://epicenterprograms.github.io/standards/formatting/foundation.css">
