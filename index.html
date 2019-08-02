@@ -112,9 +112,17 @@
 				// file.onload might also be able to be used without the states and statuses
 				file.send(S.http_build_query({ tryGitHub: true, HTML: "<!doctype html>" + S.getTag("html")[0].outerHTML + "<!-- This worked! -->" }));
 				*/
+				/*
 				S.getId("result").textContent = "Result";
 				S.getId("location1").value = "";
 				S.getId("location2").value = "";
+				*/
+				S.getId("result").textContent = "";
+				let paths = [];
+				S.storage.server.database.collectionGroup("<collection>").get().then(function (doc) {
+					paths.push(doc.path);
+				});
+				S.getId("result").textContent = paths.join(", ");
 			}
 
 			S.listen("default", "change", function () {
