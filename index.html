@@ -119,7 +119,7 @@
 
 			function test2() {
 				console.log("Running test");
-				var worker = new Worker("webworker.js");
+				let worker = Worker("webworker.js");
 				worker.postMessage(test2);
             }
 
