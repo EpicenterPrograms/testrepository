@@ -120,15 +120,14 @@
 			function test2() {
 				console.log("Running test");
 				let worker = new Worker("webworker.js");
-				worker.postMessage("Hi");
+                worker.addEventListener("message", function (message) {
+                    console.log(message.data);
+                    if (message.data == "Hi") {
+                        test2();
+                    }
+                });
+                worker.postMessage("Hi");
 			}
-
-			window.addEventListener("message", function (message) {
-				console.log(message.data);
-				if (message.data == "Hi") {
-					test2();
-				}
-			});
 
 			S.listen("default", "change", function () {
 				if (this.value != "") {
