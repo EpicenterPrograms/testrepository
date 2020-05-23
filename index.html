@@ -119,8 +119,8 @@
 
 			function test2() {
 				console.log("Running test");
-				let worker = Worker("webworker.js");
-				worker.postMessage(test2);
+				let worker = new Worker("webworker.js");
+				worker.postMessage("Hi");
             }
 
 			S.listen("default", "change", function () {
