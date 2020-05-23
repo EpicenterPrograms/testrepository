@@ -117,6 +117,12 @@
 				S.getId("location2").value = "";
 			}
 
+			function test2() {
+				console.log("Running test");
+				let worker = new Worker("webworker.js");
+				worker.postMessage(test2);
+            }
+
 			S.listen("default", "change", function () {
 				if (this.value != "") {
 					M.defaultLocation = this.value.trim();
@@ -216,6 +222,9 @@
 				Result
 			</p>
 			<button onclick="test()">
+				Clear
+			</button>
+			<button onclick="test2()">
 				Test
 			</button>
 			<br>
