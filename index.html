@@ -120,12 +120,14 @@
 			function test2() {
 				console.log("Running test");
 				let worker = new Worker("webworker.js");
-				worker.postMessage(test3);
+				worker.postMessage("Hi");
 			}
 
-			function test3() {
-				console.log("Running other test.");
-				test2();
+			window.addEventListener("message", function (message) {
+				console.log(message.data);
+				if (message.data == "Hi") {
+					test2();
+				}
             }
 
 			S.listen("default", "change", function () {

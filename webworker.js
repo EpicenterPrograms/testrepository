@@ -16,7 +16,7 @@ self.addEventListener("message", function (message) {
 		self.postMessage(4);
 	}, 4000);
 	setTimeout(function () {
-		message.data();
+		self.postMessage(message.data);
 		self.close();  // closes the web worker
 	}, 5000);
 });
